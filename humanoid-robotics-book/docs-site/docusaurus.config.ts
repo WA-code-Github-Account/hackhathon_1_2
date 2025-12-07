@@ -1,35 +1,27 @@
+// @ts-check
 import {themes as prismThemes} from 'prism-react-renderer';
 import type {Config} from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 
-// This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
-
 const config: Config = {
-  title: 'My Site',
-  tagline: 'Dinosaurs are cool',
+  title: 'Physical AI & Humanoid Robotics',
+  tagline: 'A Comprehensive Guide to Intelligent Humanoid Systems',
+  
+  // GitHub Pages URL - TUMHARA DEPLOYMENT URL
+  url: 'https://A-Siddiqui-coder.github.io',
+  baseUrl: '/humanoid-robotics-book/',
+  
+  // GitHub Info
+  organizationName: 'A-Siddiqui-coder', // Your GitHub username
+  projectName: 'humanoid-robotics-book', // Your repo name
+  
+  onBrokenLinks: 'warn',
+  onBrokenMarkdownLinks: 'warn',
+  
   favicon: 'img/favicon.ico',
+  deploymentBranch: 'gh-pages',
+  trailingSlash: false,
 
-  // Future flags, see https://docusaurus.io/docs/api/docusaurus-config#future
-  future: {
-    v4: true, // Improve compatibility with the upcoming Docusaurus v4
-  },
-
-  // Set the production url of your site here
-  url: 'https://your-docusaurus-site.example.com',
-  // Set the /<baseUrl>/ pathname under which your site is served
-  // For GitHub pages deployment, it is often '/<projectName>/'
-  baseUrl: '/',
-
-  // GitHub pages deployment config.
-  // If you aren't using GitHub pages, you don't need these.
-  organizationName: 'facebook', // Usually your GitHub org/user name.
-  projectName: 'docusaurus', // Usually your repo name.
-
-  onBrokenLinks: 'throw',
-
-  // Even if you don't use internationalization, you can use this field to set
-  // useful metadata like html lang. For example, if your site is Chinese, you
-  // may want to replace "en" with "zh-Hans".
   i18n: {
     defaultLocale: 'en',
     locales: ['en'],
@@ -41,25 +33,11 @@ const config: Config = {
       {
         docs: {
           sidebarPath: './sidebars.ts',
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
-          editUrl:
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
+          editUrl: 'https://github.com/A-Siddiqui-coder/humanoid-robotics-book/tree/main/docs-site/',
         },
         blog: {
           showReadingTime: true,
-          feedOptions: {
-            type: ['rss', 'atom'],
-            xslt: true,
-          },
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
-          editUrl:
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
-          // Useful options to enforce blogging best practices
-          onInlineTags: 'warn',
-          onInlineAuthors: 'warn',
-          onUntruncatedBlogPosts: 'warn',
+          editUrl: 'https://github.com/A-Siddiqui-coder/humanoid-robotics-book/tree/main/docs-site/',
         },
         theme: {
           customCss: './src/css/custom.css',
@@ -69,80 +47,129 @@ const config: Config = {
   ],
 
   themeConfig: {
-    // Replace with your project's social card
-    image: 'img/docusaurus-social-card.jpg',
-    colorMode: {
-      respectPrefersColorScheme: true,
-    },
+    // Metadata for SEO
+    metadata: [
+      {name: 'keywords', content: 'humanoid robotics, physical AI, robotics book, AI systems, GIAIC'},
+      {name: 'author', content: 'Aziza Siddiqui'},
+    ],
+    
     navbar: {
-      title: 'My Site',
+      title: 'Humanoid Robotics',
       logo: {
-        alt: 'My Site Logo',
+        alt: 'Robotics Logo',
         src: 'img/logo.svg',
       },
       items: [
         {
-          type: 'docSidebar',
-          sidebarId: 'tutorialSidebar',
+          type: 'doc',
+          docId: 'physical-ai-humanoid-robotics/intro',
           position: 'left',
-          label: 'Tutorial',
+          label: '📚 Book',
         },
-        {to: '/blog', label: 'Blog', position: 'left'},
         {
-          href: 'https://github.com/facebook/docusaurus',
+          to: '/docs/physical-ai-humanoid-robotics/part1-foundations/intro',
+          label: 'Part 1',
+          position: 'left',
+        },
+        {
+          to: '/docs/physical-ai-humanoid-robotics/part2-core-technologies/intro',
+          label: 'Part 2',
+          position: 'left',
+        },
+        {
+          to: '/docs/physical-ai-humanoid-robotics/part3-advanced-topics/intro',
+          label: 'Part 3',
+          position: 'left',
+        },
+        {
+          to: '/docs/physical-ai-humanoid-robotics/part4-interdisciplinary-frontiers/intro',
+          label: 'Part 4',
+          position: 'left',
+        },
+        {
+          href: 'https://github.com/A-Siddiqui-coder/humanoid-robotics-book',
           label: 'GitHub',
           position: 'right',
         },
       ],
     },
+    
     footer: {
       style: 'dark',
       links: [
         {
-          title: 'Docs',
+          title: 'Book Sections',
           items: [
             {
-              label: 'Tutorial',
-              to: '/docs/intro',
+              label: 'Introduction',
+              to: '/docs/physical-ai-humanoid-robotics/intro',
+            },
+            {
+              label: 'Part 1: Foundations',
+              to: '/docs/physical-ai-humanoid-robotics/part1-foundations/intro',
+            },
+            {
+              label: 'Part 2: Core Technologies',
+              to: '/docs/physical-ai-humanoid-robotics/part2-core-technologies/intro',
+            },
+            {
+              label: 'Part 3: Advanced Topics',
+              to: '/docs/physical-ai-humanoid-robotics/part3-advanced-topics/intro',
             },
           ],
         },
         {
-          title: 'Community',
+          title: 'More Chapters',
           items: [
             {
-              label: 'Stack Overflow',
-              href: 'https://stackoverflow.com/questions/tagged/docusaurus',
+              label: 'Part 4: Applications',
+              to: '/docs/physical-ai-humanoid-robotics/part4-interdisciplinary-frontiers/intro',
             },
             {
-              label: 'Discord',
-              href: 'https://discordapp.com/invite/docusaurus',
+              label: 'Chapter 1: Introduction',
+              to: '/docs/physical-ai-humanoid-robotics/part1-foundations/chapter1-introduction',
             },
             {
-              label: 'X',
-              href: 'https://x.com/docusaurus',
+              label: 'Chapter 20: Conclusion',
+              to: '/docs/physical-ai-humanoid-robotics/part4-interdisciplinary-frontiers/chapter20-conclusion',
             },
           ],
         },
         {
-          title: 'More',
+          title: 'Connect',
           items: [
             {
-              label: 'Blog',
-              to: '/blog',
+              label: 'GitHub Repository',
+              href: 'https://github.com/A-Siddiqui-coder/humanoid-robotics-book',
             },
             {
-              label: 'GitHub',
-              href: 'https://github.com/facebook/docusaurus',
+              label: 'GIAIC Official',
+              href: 'https://www.governorsindh.com/',
             },
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
+      copyright: `Copyright © ${new Date().getFullYear()} Aziza Siddiqui | GIAIC Student. Built with Docusaurus.`,
     },
+    
     prism: {
       theme: prismThemes.github,
       darkTheme: prismThemes.dracula,
+      additionalLanguages: ['python', 'bash', 'json', 'typescript', 'jsx'],
+    },
+    
+    colorMode: {
+      defaultMode: 'light',
+      disableSwitch: false,
+      respectPrefersColorScheme: true,
+    },
+    
+    // Better docs navigation
+    docs: {
+      sidebar: {
+        hideable: true,
+        autoCollapseCategories: true,
+      },
     },
   } satisfies Preset.ThemeConfig,
 };
