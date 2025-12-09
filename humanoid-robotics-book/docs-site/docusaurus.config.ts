@@ -1,5 +1,6 @@
 // @ts-check
-// Note: type annotations allow type checking and IDEs autocompletion
+const lightCodeTheme = require('prism-react-renderer/themes/github');
+const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
@@ -7,15 +8,11 @@ const config = {
   tagline: 'A Comprehensive Guide to Building Intelligent Humanoid Systems',
   favicon: 'img/favicon.ico',
 
-  // Set the production url of your site here
   url: 'https://your-site.vercel.app',
-  // Set the /<baseUrl>/ pathname under which your site is served
-  // For Vercel deployment, this should be '/'
   baseUrl: '/',
 
-  // GitHub pages deployment config.
-  organizationName: 'aziza-siddiqui', // Your GitHub username
-  projectName: 'humanoid-robotics-book', // Your repo name
+  organizationName: 'aziza-siddiqui',
+  projectName: 'humanoid-robotics-book',
 
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
@@ -59,26 +56,6 @@ const config = {
             label: '📚 Book',
           },
           {
-            to: '/part1',
-            label: 'Part 1',
-            position: 'left',
-          },
-          {
-            to: '/part2',
-            label: 'Part 2',
-            position: 'left',
-          },
-          {
-            to: '/part3',
-            label: 'Part 3',
-            position: 'left',
-          },
-          {
-            to: '/part4',
-            label: 'Part 4',
-            position: 'left',
-          },
-          {
             href: 'https://github.com/yourusername/humanoid-robotics-book',
             label: 'GitHub',
             position: 'right',
@@ -89,40 +66,11 @@ const config = {
         style: 'dark',
         links: [
           {
-            title: 'Book Sections',
+            title: 'Documentation',
             items: [
               {
                 label: 'Introduction',
-                to: '/',
-              },
-              {
-                label: 'Part 1: Foundations',
-                to: '/part1',
-              },
-              {
-                label: 'Part 2: Core Technologies',
-                to: '/part2',
-              },
-              {
-                label: 'Part 3: Advanced Topics',
-                to: '/part3',
-              },
-            ],
-          },
-          {
-            title: 'More Chapters',
-            items: [
-              {
-                label: 'Part 4: Applications',
-                to: '/part4',
-              },
-              {
-                label: 'Chapter 1: Introduction',
-                to: '/chapter1',
-              },
-              {
-                label: 'Chapter 20: Conclusion',
-                to: '/chapter20',
+                to: '/physical-ai-humanoid-robotics/intro',
               },
             ],
           },
@@ -130,11 +78,11 @@ const config = {
             title: 'Connect',
             items: [
               {
-                label: 'GitHub Repository',
+                label: 'GitHub',
                 href: 'https://github.com/yourusername/humanoid-robotics-book',
               },
               {
-                label: 'GIAIC Official',
+                label: 'GIAIC',
                 href: 'https://www.giaic.com',
               },
             ],
@@ -142,7 +90,6 @@ const config = {
         ],
         copyright: `Copyright © ${new Date().getFullYear()} Aziza Siddiqui | GIAIC Student. Built with Docusaurus.`,
       },
-    
     }),
 };
 
