@@ -9,9 +9,8 @@ const Chatbot = () => {
   const [inputValue, setInputValue] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
-  // ✅ TEMPORARY TEST: using working /rag/test endpoint
+  // ✅ Correct backend URL
   const BACKEND_URL = "https://web-production-f8b4.up.railway.app/api/v1/rag";
-
 
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
@@ -37,7 +36,7 @@ const Chatbot = () => {
     setIsLoading(true);
 
     try {
-      const response = await fetch(apiUrl, {
+      const response = await fetch(BACKEND_URL, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -56,7 +55,7 @@ const Chatbot = () => {
 
       const botMessage = {
         id: Date.now() + 1,
-        text: data.response ?? 'No response from backend',
+        text: data.answer ?? 'No response from backend', // Adjust key according to backend response
         sender: 'bot' as const,
       };
 
