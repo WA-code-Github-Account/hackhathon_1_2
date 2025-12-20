@@ -10,8 +10,8 @@ const Chatbot = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   // ✅ TEMPORARY TEST: using working /rag/test endpoint
-  const apiUrl =
-    'https://web-production-f8b4.up.railway.app/';
+  const BACKEND_URL = "https://web-production-f8b4.up.railway.app/api/v1/rag";
+
 
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
