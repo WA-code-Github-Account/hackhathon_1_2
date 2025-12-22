@@ -11,8 +11,9 @@ const Chatbot = () => {
 
   // ✅ Backend URL - RAG query
   const BACKEND_URL =
-    "https://web-production-f8b4.up.railway.app/docs";
 
+
+    "const BACKEND_URL = "https://web-production-f8b4.up.railway.app/api/v1/rag/query";";
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   // Scroll chat to bottom
