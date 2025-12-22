@@ -1,163 +1,50 @@
-import React, { useState, useRef, useEffect } from "react";
-import styles from "./styles.module.css";
+import React from 'react';
+import clsx from 'clsx';
+import Link from '@docusaurus/Link';
+import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
+import Layout from '@theme/Layout';
+import HomepageFeatures from '@site/src/components/HomepageFeatures';
+import BrowserOnly from '@docusaurus/BrowserOnly';
 
-const Chatbot = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [messages, setMessages] = useState
-    { id: number; text: string; sender: "user" | "bot" }[]
-  >([]);
-  const [inputValue, setInputValue] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
+import styles from './index.module.css';
 
-  // ✅ Backend URL - RAG query
-  const BACKEND_URL = "https://web-production-f8b4.up.railway.app/api/v1/rag/query";
-
-  const messagesEndRef = useRef<HTMLDivElement>(null);
-
-  // Scroll chat to bottom
-  const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-  };
-
-  useEffect(() => {
-    scrollToBottom();
-  }, [messages]);
-
-  // Send message to backend
-  const handleSend = async () => {
-    if (!inputValue.trim() || isLoading) return;
-
-    const userMessage = {
-      id: Date.now(),
-      text: inputValue,
-      sender: "user" as const,
-    };
-
-    setMessages((prev) => [...prev, userMessage]);
-    setInputValue("");
-    setIsLoading(true);
-
-    try {
-      const response = await fetch(BACKEND_URL, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ query: inputValue, language: "en" }),
-      });
-
-      if (!response.ok) throw new Error(`HTTP error ${response.status}`);
-
-      const data = await response.json();
-
-      const botMessage = {
-        id: Date.now() + 1,
-        text: data.response ?? "No response from backend",
-        sender: "bot" as const,
-      };
-
-      setMessages((prev) => [...prev, botMessage]);
-    } catch (error) {
-      const errorMessage = {
-        id: Date.now() + 1,
-        text: "⚠ Sorry, backend not reachable. Try again later.",
-        sender: "bot" as const,
-      };
-      setMessages((prev) => [...prev, errorMessage]);
-      console.error("Chatbot error:", error);
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
-  // Press Enter to send
-  const handleKeyPress = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
-    if (e.key === "Enter" && !e.shiftKey) {
-      e.preventDefault();
-      handleSend();
-    }
-  };
-
-  // Auto resize textarea
-  useEffect(() => {
-    const textarea = document.querySelector(
-      `.${styles.chatInput} textarea`
-    ) as HTMLTextAreaElement;
-    if (textarea) {
-      textarea.style.height = "auto";
-      textarea.style.height = `${Math.min(textarea.scrollHeight, 100)}px`;
-    }
-  }, [inputValue]);
-
+function HomepageHeader() {
+  const {siteConfig} = useDocusaurusContext();
   return (
-    <div className={styles.chatbotContainer}>
-      <button
-        className={`${styles.chatbotButton} ${isOpen ? styles.openButton : ""}`}
-        onClick={() => setIsOpen(!isOpen)}
-        aria-label={isOpen ? "Close chat" : "Open chat"}
-      >
-        {isOpen ? "×" : "🤖"}
-      </button>
-
-      {isOpen && (
-        <div className={styles.chatWindow}>
-          <div className={styles.chatHeader}>
-            <h3>Book Assistant</h3>
-          </div>
-
-          <div className={styles.chatMessages}>
-            {messages.length === 0 ? (
-              <div className={styles.welcomeMessage}>
-                <p>Hello! I'm your book assistant.</p>
-                <p>Ask me anything about Physical AI & Humanoid Robotics.</p>
-              </div>
-            ) : (
-              messages.map((message) => (
-                <div
-                  key={message.id}
-                  className={`${styles.message} ${
-                    message.sender === "user"
-                      ? styles.userMessage
-                      : styles.botMessage
-                  }`}
-                >
-                  <div className={styles.messageText}>{message.text}</div>
-                </div>
-              ))
-            )}
-
-            {isLoading && (
-              <div className={`${styles.message} ${styles.botMessage}`}>
-                <div className={styles.typingIndicator}>
-                  <div className={styles.dot}></div>
-                  <div className={styles.dot}></div>
-                  <div className={styles.dot}></div>
-                </div>
-              </div>
-            )}
-
-            <div ref={messagesEndRef} />
-          </div>
-
-          <div className={styles.chatInput}>
-            <textarea
-              value={inputValue}
-              onChange={(e) => setInputValue(e.target.value)}
-              onKeyPress={handleKeyPress}
-              placeholder="Ask a question about the book..."
-              rows={1}
-              disabled={isLoading}
-            />
-            <button
-              onClick={handleSend}
-              disabled={!inputValue.trim() || isLoading}
-              className={styles.sendButton}
-            >
-              Send
-            </button>
-          </div>
+    <header className={clsx('hero hero--primary', styles.heroBanner)}>
+      <div className="container">
+        <h1 className="hero__title">{siteConfig.title}</h1>
+        <p className="hero__subtitle">{siteConfig.tagline}</p>
+        <div className={styles.buttons}>
+          <Link
+            className="button button--secondary button--lg"
+            to="/docs/intro">
+            Get Started
+          </Link>
         </div>
-      )}
-    </div>
+      </div>
+    </header>
   );
-};
+}
 
-export default Chatbot;
+export default function Home(): JSX.Element {
+  const {siteConfig} = useDocusaurusContext();
+  return (
+    <Layout
+      title={`Hello from ${siteConfig.title}`}
+      description="Description will go into a meta tag in <head />">
+      <HomepageHeader />
+      <main>
+        <HomepageFeatures />
+      </main>
+      
+      {/* Chatbot - Client Side Only */}
+      <BrowserOnly fallback={<div>Loading...</div>}>
+        {() => {
+          const Chatbot = require('@site/src/components/Chatbot').default;
+          return <Chatbot />;
+        }}
+      </BrowserOnly>
+    </Layout>
+  );
+}
