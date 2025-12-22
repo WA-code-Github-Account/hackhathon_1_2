@@ -3,17 +3,15 @@ import styles from "./styles.module.css";
 
 const Chatbot = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [messages, setMessages] = useState<
+  const [messages, setMessages] = useState
     { id: number; text: string; sender: "user" | "bot" }[]
   >([]);
   const [inputValue, setInputValue] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
   // ✅ Backend URL - RAG query
-  const BACKEND_URL =
+  const BACKEND_URL = "https://web-production-f8b4.up.railway.app/api/v1/rag/query";
 
-
-    "const BACKEND_URL = "https://web-production-f8b4.up.railway.app/api/v1/rag/query";";
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   // Scroll chat to bottom
