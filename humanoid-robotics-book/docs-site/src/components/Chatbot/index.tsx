@@ -11,7 +11,7 @@ const Chatbot = () => {
 
   // ✅ TEMPORARY TEST: using working /rag/test endpoint
   const apiUrl =
-    'https://web-production-113b9.up.railway.app/api/v1/rag/test';
+    'https://web-production-113b9.up.railway.app/api/v1/rag/query';
 
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
